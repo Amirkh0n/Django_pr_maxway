@@ -1,0 +1,30 @@
+{% extends 'adminapp/base.html' %}
+
+
+{% block title %} Categories {% endblock %}
+
+{% block content %}
+ <!-- Categories Start -->
+           <div class="container-fluid pt-4 px-4">
+             <a href="{% url  'category_create' %}"> <i class="fas fa-plus-circle"></i> Create</a>
+           </div>
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                 {% for category in categories %}
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img class="rounded-circle" src="{{ category.image_path }}" alt="photo" width="100px" height="90px">
+                            <!--<i class="fa fa-chart-line fa-3x text-primary"></i>-->
+                            <div class="ms-3"><span style="margin: 0px 10px;"></span><a class="edit" href="{{ category.get_url }}/edit/" style="color: aqua; text-align: right;"><i class="fas fa-edit"></i> Edit</a> <span style="margin: 0px 10px;"></span><a href="{{ category.get_url }}/delete/"> <i class="fas fa-trash-alt"></i> Delete</a>
+                              <a href="#">
+                                <h4 class="mb-2" style="color: aqua;">{{ category.name }}</h4>
+                                <h6 class="mb-0">{{ category.description }}</h6>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Categories End -->
+{% endblock %}
